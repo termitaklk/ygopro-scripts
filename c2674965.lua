@@ -45,7 +45,7 @@ function s.thcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.PayLPCost(tp,1000)
 end
 function s.thfilter(c)
-	return c:IsFaceupEx() and c:IsSetCard(0x1c3) and c:IsAbleToHand()
+	return c:IsFaceupEx() and c:IsSetCard(0x1c1) and c:IsAbleToHand()
 end
 function s.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(s.thfilter,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil) end
@@ -71,7 +71,7 @@ function s.damop(e,tp,eg,ep,ev,re,r,rp)
 	Duel.Damage(1-tp,500,REASON_EFFECT)
 end
 function s.cfilter2(c)
-	return c:IsFaceupEx() and c:IsType(TYPE_MONSTER) and c:IsSetCard(0x1c3)
+	return c:IsFaceupEx() and c:IsType(TYPE_MONSTER) and c:IsSetCard(0x1c1)
 end
 function s.discon(e,tp,eg,ep,ev,re,r,rp)
 	local rc=re:GetHandler()

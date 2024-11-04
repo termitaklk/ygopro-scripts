@@ -49,13 +49,13 @@ end
 function s.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then return Duel.GetLocationCount(tp,LOCATION_MZONE)>0 and c:GetFlagEffect(id)==0
-		and Duel.IsPlayerCanSpecialSummonMonster(tp,id,0x1c3,TYPES_EFFECT_TRAP_MONSTER,800,800,4,RACE_WARRIOR,ATTRIBUTE_LIGHT) end
+		and Duel.IsPlayerCanSpecialSummonMonster(tp,id,0x1c1,TYPES_EFFECT_TRAP_MONSTER,800,800,4,RACE_WARRIOR,ATTRIBUTE_LIGHT) end
 	c:RegisterFlagEffect(id,RESET_EVENT+RESETS_STANDARD-RESET_TOFIELD-RESET_LEAVE-RESET_TURN_SET+RESET_PHASE+PHASE_END,0,1)
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,e:GetHandler(),1,0,0)
 end
 function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	if not Duel.IsPlayerCanSpecialSummonMonster(tp,id,0x1c3,TYPES_EFFECT_TRAP_MONSTER,800,800,4,RACE_WARRIOR,ATTRIBUTE_LIGHT) then return end
+	if not Duel.IsPlayerCanSpecialSummonMonster(tp,id,0x1c1,TYPES_EFFECT_TRAP_MONSTER,800,800,4,RACE_WARRIOR,ATTRIBUTE_LIGHT) then return end
 	c:AddMonsterAttribute(TYPE_EFFECT+TYPE_TRAP)
 	if Duel.SpecialSummon(c,SUMMON_VALUE_SELF,tp,tp,true,false,POS_FACEUP)~=0
 		and Duel.IsExistingMatchingCard(s.cfilter2,tp,LOCATION_REMOVED,0,1,nil)
@@ -71,7 +71,7 @@ function s.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function s.cfilter2(c)
-	return c:IsFaceupEx() and c:IsType(TYPE_MONSTER) and c:IsSetCard(0x1c3)
+	return c:IsFaceupEx() and c:IsType(TYPE_MONSTER) and c:IsSetCard(0x1c1)
 end
 function s.setcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
