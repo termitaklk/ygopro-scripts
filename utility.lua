@@ -296,7 +296,13 @@ function Auxiliary.ArcanaCoinOperation(e,tp,eg,ep,ev,re,r,rp)
 	if toss then
 		c:RegisterFlagEffect(FLAG_ID_REVERSAL_OF_FATE,RESET_EVENT+RESETS_STANDARD,0,1)
 	end
-	c.arcanareg(c,res)
+	c:RegisterFlagEffect(FLAG_ID_ARCANA_COIN,RESET_EVENT+RESETS_STANDARD,EFFECT_FLAG_CLIENT_HINT,1,res,63-res)
+end
+---condition of Arcana Force monster effect from coin toss
+---@param e Effect
+---@return boolean
+function Auxiliary.ArcanaCondition(e)
+	return e:GetHandler():GetFlagEffect(FLAG_ID_ARCANA_COIN)>0
 end
 function Auxiliary.IsUnionState(effect)
 	local c=effect:GetHandler()
@@ -1835,13 +1841,24 @@ end
 ---@param category integer
 ---@return function
 function Auxiliary.EffectCategoryFilter(category)
-	return aux.FilterBoolFunction(Effect.IsHasCategory,category)
-end
----@param category integer
----@return function
-function Auxiliary.MonsterEffectCategoryFilter(category)
 	---@param e Effect
 	return function (e)
-		return e:IsHasCategory(category) and not e:IsHasRange(LOCATION_PZONE)
+		return e:IsHasCategory(category)
+	end
+end
+---@param flag integer
+---@return function
+function Auxiliary.EffectPropertyFilter(flag)
+	---@param e Effect
+	return function (e)
+		return e:IsHasProperty(flag)
+	end
+end
+---@param flag integer
+---@return function
+function Auxiliary.MonsterEffectPropertyFilter(flag)
+	---@param e Effect
+	return function (e)
+		return e:IsHasProperty(flag) and not e:IsHasRange(LOCATION_PZONE)
 	end
 end
